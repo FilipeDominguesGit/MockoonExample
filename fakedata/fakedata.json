@@ -1,0 +1,1216 @@
+{
+  "uuid": "5b6f00e4-913f-4f74-952d-f875e86e9239",
+  "lastMigration": 27,
+  "name": "Swagger Petstore Api",
+  "endpointPrefix": "v2",
+  "latency": 0,
+  "port": 3002,
+  "hostname": "",
+  "routes": [
+    {
+      "uuid": "fd9c6094-7b2b-4f53-a03d-8ca93f4efee3",
+      "documentation": "uploads an image",
+      "method": "post",
+      "endpoint": "pet/:petId/uploadImage",
+      "responses": [
+        {
+          "uuid": "ad25c212-0d17-404f-96a3-366aef832653",
+          "body": "{\n  \"code\": {{faker 'datatype.number'}},\n  \"type\": \"\",\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "a80c26ef-7c9b-49a4-99ab-47bc864a0ca6",
+      "documentation": "Add a new pet to the store",
+      "method": "post",
+      "endpoint": "pet",
+      "responses": [
+        {
+          "uuid": "a29fe8f8-9748-47b0-a87d-f835c4dd6460",
+          "body": "{\n  \"id\": {{faker 'datatype.number'}},\n  \"category\": {\n    \"id\": {{faker 'datatype.number'}},\n    \"name\": \"\"\n  },\n  \"name\": \"doggie\",\n  \"photoUrls\": [\n    \"\"\n  ],\n  \"tags\": [\n    {\n      \"id\": {{faker 'datatype.number'}},\n      \"name\": \"\"\n    }\n  ],\n  \"status\": \"{{oneOf (array 'available' 'pending' 'sold')}}\"\n}",
+          "latency": 0,
+          "statusCode": 201,
+          "label": "",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "428125b4-2656-41ef-a5dc-8f3b33fbb069",
+      "documentation": "Update an existing pet",
+      "method": "put",
+      "endpoint": "pet",
+      "responses": [
+        {
+          "uuid": "f37f89c5-3a60-4867-97c3-2cf8717bb0ea",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid ID supplied",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "026416a9-7b51-474e-b6a4-74fc88099a05",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Pet not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "13efd057-e962-4dee-a0a1-db4dda5d01af",
+          "body": "",
+          "latency": 0,
+          "statusCode": 405,
+          "label": "Validation exception",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "70c2ec8b-cb37-4699-b1df-0b1d9a0f5776",
+      "documentation": "Finds Pets by status",
+      "method": "get",
+      "endpoint": "pet/findByStatus",
+      "responses": [
+        {
+          "uuid": "188e36cb-9148-4204-a48e-bc5489316773",
+          "body": "[\n  {\n    \"id\": {{faker 'datatype.number'}},\n    \"category\": {\n      \"id\": {{faker 'datatype.number'}},\n      \"name\": \"\"\n    },\n    \"name\": \"doggie\",\n    \"photoUrls\": [\n      \"\"\n    ],\n    \"tags\": [\n      {\n        \"id\": {{faker 'datatype.number'}},\n        \"name\": \"\"\n      }\n    ],\n    \"status\": \"{{oneOf (array 'available' 'pending' 'sold')}}\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "ec5770a8-ee70-4ac5-ac3b-e4fa8ef3be50",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid status value",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "a9c28e34-a23e-4185-8d02-51aa63f66336",
+      "documentation": "Finds Pets by tags",
+      "method": "get",
+      "endpoint": "pet/findByTags",
+      "responses": [
+        {
+          "uuid": "b4c39209-726b-4c9d-aad4-d0acf07ee959",
+          "body": "[\n  {\n    \"id\": {{faker 'datatype.number'}},\n    \"category\": {\n      \"id\": {{faker 'datatype.number'}},\n      \"name\": \"\"\n    },\n    \"name\": \"doggie\",\n    \"photoUrls\": [\n      \"\"\n    ],\n    \"tags\": [\n      {\n        \"id\": {{faker 'datatype.number'}},\n        \"name\": \"\"\n      }\n    ],\n    \"status\": \"{{oneOf (array 'available' 'pending' 'sold')}}\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "cb6b3f20-1d60-4912-95a3-4f5034bbdae9",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid tag value",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "13e1e5ea-837e-4b20-8358-3950cf076eec",
+      "documentation": "Find pet by ID",
+      "method": "get",
+      "endpoint": "pet/:petId",
+      "responses": [
+        {
+          "uuid": "e92ee4f0-4439-450b-b3f2-4110ba71f2f6",
+          "body": "{\n  \"id\": {{urlParam 'petId'}},\n  \"category\": {\n    \"id\": {{faker 'datatype.number'}},\n    \"name\": \"\"\n  },\n  \"name\": \"doggie\",\n  \"photoUrls\": [\n    \"\"\n  ],\n  \"tags\": [\n    {\n      \"id\": {{faker 'datatype.number'}},\n      \"name\": \"{{header 'X-geo-header' 'unknown'}}\"\n    }\n  ],\n  \"status\": \"{{oneOf (array 'available' 'pending' 'sold')}}\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "5849e4ce-7651-495f-bfce-6f287c9dd4bf",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid ID supplied",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "cec6a1b1-9cfc-4b1f-bf68-57714fff48a6",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Pet not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "545ff6fc-1473-4ac1-8d3d-ddf6e500fd77",
+          "body": "",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "petId",
+              "value": "500",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "56e5dc5d-c3b2-4581-8ad9-e962b3c90643",
+          "body": "",
+          "latency": 0,
+          "statusCode": 410,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "petId",
+              "value": "410",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "7aa5012c-5bf8-4815-8c27-4a10cda44e41",
+          "body": "",
+          "latency": 0,
+          "statusCode": 423,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "petId",
+              "value": "423",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "4f2cab5f-6c3a-4817-a5ee-4a5e47328dd4",
+      "documentation": "Updates a pet in the store with form data",
+      "method": "post",
+      "endpoint": "pet/:petId",
+      "responses": [
+        {
+          "uuid": "7e23cd9d-2413-4f55-8e90-f7ab4df20257",
+          "body": "",
+          "latency": 0,
+          "statusCode": 405,
+          "label": "Invalid input",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "bc8d1575-0ce5-4597-a04c-046cb13e6d56",
+      "documentation": "Deletes a pet",
+      "method": "delete",
+      "endpoint": "pet/:petId",
+      "responses": [
+        {
+          "uuid": "9235fce0-f7f5-47f1-b108-f969b51a8159",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid ID supplied",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "d1668797-2e7d-46bd-9f8a-f92465558fca",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Pet not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "0405b78e-1863-4ee8-82a1-3fdc9e449416",
+      "documentation": "Place an order for a pet",
+      "method": "post",
+      "endpoint": "store/order",
+      "responses": [
+        {
+          "uuid": "5233d428-648b-45b8-a217-554ff2ed7358",
+          "body": "{\n  \"id\": {{faker 'datatype.number'}},\n  \"petId\": {{faker 'datatype.number'}},\n  \"quantity\": {{faker 'datatype.number'}},\n  \"shipDate\": \"{{faker 'date.recent' 365}}\",\n  \"status\": \"{{oneOf (array 'placed' 'approved' 'delivered')}}\",\n  \"complete\": {{faker 'datatype.boolean'}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "4ddbc29d-9146-45b2-8bae-b33ddc1ddd1a",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid Order",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "4355ad83-3e04-4b4b-9304-66dbbeb69398",
+      "documentation": "Find purchase order by ID",
+      "method": "get",
+      "endpoint": "store/order/:orderId",
+      "responses": [
+        {
+          "uuid": "9135e0cc-81af-48ed-b0b4-008893105d15",
+          "body": "{\n  \"id\": {{faker 'datatype.number'}},\n  \"petId\": {{faker 'datatype.number'}},\n  \"quantity\": {{faker 'datatype.number'}},\n  \"shipDate\": \"{{faker 'date.recent' 365}}\",\n  \"status\": \"{{oneOf (array 'placed' 'approved' 'delivered')}}\",\n  \"complete\": {{faker 'datatype.boolean'}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "8305cfb6-295c-44fd-b041-4af9b697e607",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid ID supplied",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "ee7ec0db-2fde-40ba-911c-c18a22747eda",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Order not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "6cd55f81-8f70-425c-b5e1-d0a45747cac0",
+      "documentation": "Delete purchase order by ID",
+      "method": "delete",
+      "endpoint": "store/order/:orderId",
+      "responses": [
+        {
+          "uuid": "68a2bf76-1841-4423-aefb-332587454da9",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid ID supplied",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "d5453eb1-46e0-458e-9e17-10c7b970990a",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "Order not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "8448cd3a-694e-4199-b9f2-33696222d52d",
+      "documentation": "Returns pet inventories by status",
+      "method": "get",
+      "endpoint": "store/inventory",
+      "responses": [
+        {
+          "uuid": "beeb8c4e-f2d1-4641-8152-42670114f3c8",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "5531cc14-1059-40eb-8d1d-48234900cd67",
+      "documentation": "Creates list of users with given input array",
+      "method": "post",
+      "endpoint": "user/createWithArray",
+      "responses": [
+        {
+          "uuid": "e97e81b4-dc21-4143-af13-9217ea76c912",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "ab51e2cf-ec7b-4d0f-9771-0d9bc34a31bf",
+      "documentation": "Creates list of users with given input array",
+      "method": "post",
+      "endpoint": "user/createWithList",
+      "responses": [
+        {
+          "uuid": "897069cb-5002-46c5-a474-5f86350e75af",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "bbfa431c-4a16-43cb-b864-d76c8f6e8e75",
+      "documentation": "Get user by user name",
+      "method": "get",
+      "endpoint": "user/:username",
+      "responses": [
+        {
+          "uuid": "64be1b5d-5499-4d23-8a0e-59616399a3d0",
+          "body": "{\n  \"id\": {{faker 'datatype.number'}},\n  \"username\": \"\",\n  \"firstName\": \"\",\n  \"lastName\": \"\",\n  \"email\": \"\",\n  \"password\": \"\",\n  \"phone\": \"\",\n  \"userStatus\": {{faker 'datatype.number'}}\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "3f17f614-15ac-4c13-a0bc-8de3c889618d",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid username supplied",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "5152ba0a-e309-4d4d-845e-20e47ff29cdb",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "User not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "65cc38b3-bf2b-41e5-ac5d-4b3ab15c89ff",
+      "documentation": "Updated user",
+      "method": "put",
+      "endpoint": "user/:username",
+      "responses": [
+        {
+          "uuid": "cabf3c46-154d-4758-b1bd-1b92191b992c",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid user supplied",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "4bdefb6d-46fa-460d-9b62-30edb7014b03",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "User not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "da16df12-85d7-4de5-ba36-5d111162ed61",
+      "documentation": "Delete user",
+      "method": "delete",
+      "endpoint": "user/:username",
+      "responses": [
+        {
+          "uuid": "5d30f0c5-ff61-4168-af04-b694a7693e4b",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid username supplied",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "cdbf5176-8c53-4b6a-ab1a-4cde022cb635",
+          "body": "",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "User not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "848f956a-9d13-4ddc-9071-cc0b698fa16e",
+      "documentation": "Logs user into the system",
+      "method": "get",
+      "endpoint": "user/login",
+      "responses": [
+        {
+          "uuid": "6d42f578-afa2-4b3f-88db-280344614f21",
+          "body": "\"\"",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "X-Expires-After",
+              "value": ""
+            },
+            {
+              "key": "X-Rate-Limit",
+              "value": ""
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        },
+        {
+          "uuid": "de8238a4-577b-428b-8db2-4df4e3b1293f",
+          "body": "",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "Invalid username/password supplied",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "904f4756-5bb4-4faf-a174-deb7a810623a",
+      "documentation": "Logs out current logged in user session",
+      "method": "get",
+      "endpoint": "user/logout",
+      "responses": [
+        {
+          "uuid": "6a8d10fb-c3a4-4278-b8e3-0c63c9318cb7",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "6c0451f9-87a5-4a75-ae39-0ad065afb17a",
+      "documentation": "Create user",
+      "method": "post",
+      "endpoint": "user",
+      "responses": [
+        {
+          "uuid": "cb1758ab-e6eb-430b-8eab-4993b3a42520",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "successful operation",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "folders": [],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "fd9c6094-7b2b-4f53-a03d-8ca93f4efee3"
+    },
+    {
+      "type": "route",
+      "uuid": "a80c26ef-7c9b-49a4-99ab-47bc864a0ca6"
+    },
+    {
+      "type": "route",
+      "uuid": "428125b4-2656-41ef-a5dc-8f3b33fbb069"
+    },
+    {
+      "type": "route",
+      "uuid": "70c2ec8b-cb37-4699-b1df-0b1d9a0f5776"
+    },
+    {
+      "type": "route",
+      "uuid": "a9c28e34-a23e-4185-8d02-51aa63f66336"
+    },
+    {
+      "type": "route",
+      "uuid": "13e1e5ea-837e-4b20-8358-3950cf076eec"
+    },
+    {
+      "type": "route",
+      "uuid": "4f2cab5f-6c3a-4817-a5ee-4a5e47328dd4"
+    },
+    {
+      "type": "route",
+      "uuid": "bc8d1575-0ce5-4597-a04c-046cb13e6d56"
+    },
+    {
+      "type": "route",
+      "uuid": "0405b78e-1863-4ee8-82a1-3fdc9e449416"
+    },
+    {
+      "type": "route",
+      "uuid": "4355ad83-3e04-4b4b-9304-66dbbeb69398"
+    },
+    {
+      "type": "route",
+      "uuid": "6cd55f81-8f70-425c-b5e1-d0a45747cac0"
+    },
+    {
+      "type": "route",
+      "uuid": "8448cd3a-694e-4199-b9f2-33696222d52d"
+    },
+    {
+      "type": "route",
+      "uuid": "5531cc14-1059-40eb-8d1d-48234900cd67"
+    },
+    {
+      "type": "route",
+      "uuid": "ab51e2cf-ec7b-4d0f-9771-0d9bc34a31bf"
+    },
+    {
+      "type": "route",
+      "uuid": "bbfa431c-4a16-43cb-b864-d76c8f6e8e75"
+    },
+    {
+      "type": "route",
+      "uuid": "65cc38b3-bf2b-41e5-ac5d-4b3ab15c89ff"
+    },
+    {
+      "type": "route",
+      "uuid": "da16df12-85d7-4de5-ba36-5d111162ed61"
+    },
+    {
+      "type": "route",
+      "uuid": "848f956a-9d13-4ddc-9071-cc0b698fa16e"
+    },
+    {
+      "type": "route",
+      "uuid": "904f4756-5bb4-4faf-a174-deb7a810623a"
+    },
+    {
+      "type": "route",
+      "uuid": "6c0451f9-87a5-4a75-ae39-0ad065afb17a"
+    }
+  ]
+}
